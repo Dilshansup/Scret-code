@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations 🙂💗🔑</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Congratulatory Text Banner */
+        .congrats-text {
+            margin-top: 50px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInText 2s ease-in-out 2.5s forwards;
+            z-index: 20;
+        }
+
+        .congrats-text h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d81b60;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(255, 182, 193, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .congrats-text p {
+            font-size: 1.5rem;
+            color: #4a148c;
+            margin: 5px 0 0 0;
+            font-weight: 600;
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .flower-container {
+            position: relative;
+            bottom: 30px;
+            animation: sway 4s ease-in-out infinite alternate;
+            transform-origin: bottom center;
+        }
+
+        /* Stem */
+        .stem {
+            width: 8px;
+            height: 250px;
+            background: linear-gradient(to right, #4CAF50, #81C784);
+            margin: 0 auto;
+            border-radius: 4px;
+            transform-origin: bottom center;
+            animation: growStem 2s ease-out forwards;
+        }
+
+        /* Leaves */
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: 25px;
+            background: #4CAF50;
+            border-radius: 0 50px 0 50px;
+            transform-origin: left center;
+            opacity: 0;
+            animation: growLeaf 1.5s ease-out 1.5s forwards;
+        }
+
+        .leaf.left {
+            left: -48px;
+            top: 120px;
+            transform: rotate(-30deg) scale(0);
+        }
+
+        .leaf.right {
+            right: -48px;
+            top: 170px;
+            transform: scaleX(-1) rotate(-30deg) scale(0);
+        }
+
+        /* Flower Head */
+        .flower-head {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+        }
+
+        /* Center Pistil */
+        .center {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #FFEB3B;
+            border-radius: 50%;
+            top: -15px;
+            left: -15px;
+            z-index: 10;
+            transform: scale(0);
+            animation: popCenter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s forwards;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Petals */
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 70px;
+            background: linear-gradient(to top, #FF4081, #FF80AB);
+            border-radius: 50% 50% 20% 20%;
+            top: -70px;
+            left: -20px;
+            transform-origin: bottom center;
+            transform: scale(0) rotate(0deg);
+            opacity: 0;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Positioning and blooming of individual petals */
+        .petal:nth-child(1)  { transform: rotate(0deg) scale(0); animation: bloom 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s forwards; }
+        .petal:nth-child(2)  { transform: rotate(45deg) scale(0); animation: bloom45 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.1s forwards; }
+        .petal:nth-child(3)  { transform: rotate(90deg) scale(0); animation: bloom90 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards; }
+        .petal:nth-child(4)  { transform: rotate(135deg) scale(0); animation: bloom135 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.3s forwards; }
+        .petal:nth-child(5)  { transform: rotate(180deg) scale(0); animation: bloom180 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.4s forwards; }
+        .petal:nth-child(6)  { transform: rotate(225deg) scale(0); animation: bloom225 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s forwards; }
+        .petal:nth-child(7)  { transform: rotate(270deg) scale(0); animation: bloom270 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.6s forwards; }
+        .petal:nth-child(8)  { transform: rotate(315deg) scale(0); animation: bloom315 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.7s forwards; }
+
+        /* Animations */
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes growStem {
+            0% { height: 0; }
+            100% { height: 250px; }
+        }
+
+        @keyframes growLeaf {
+            0% { transform: rotate(-30deg) scale(0); opacity: 0; }
+            100% { transform: rotate(0deg) scale(1); opacity: 1; }
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-3deg); }
+            100% { transform: rotate(3deg); }
+        }
+
+        @keyframes popCenter {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        /* Keyframes for blooming at specific rotations */
+        @keyframes bloom { 0% { transform: rotate(0deg) scale(0); opacity: 0; } 100% { transform: rotate(0deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom45 { 0% { transform: rotate(45deg) scale(0); opacity: 0; } 100% { transform: rotate(45deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom90 { 0% { transform: rotate(90deg) scale(0); opacity: 0; } 100% { transform: rotate(90deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom135 { 0% { transform: rotate(135deg) scale(0); opacity: 0; } 100% { transform: rotate(135deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom180 { 0% { transform: rotate(180deg) scale(0); opacity: 0; } 100% { transform: rotate(180deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom225 { 0% { transform: rotate(225deg) scale(0); opacity: 0; } 100% { transform: rotate(225deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom270 { 0% { transform: rotate(270deg) scale(0); opacity: 0; } 100% { transform: rotate(270deg) scale(1); opacity: 0.95; } }
+        @keyframes bloom315 { 0% { transform: rotate(315deg) scale(0); opacity: 0; } 100% { transform: rotate(315deg) scale(1); opacity: 0.95; } }
+    </style>
+</head>
+<body>
+
+    <div class="congrats-text">
+        <h1>Congratulations</h1>
+        <p>🙂 💗 🔑</p>
+    </div>
+
+    <div class="flower-container">
+        <div class="stem">
+            <div class="leaf left"></div>
+            <div class="leaf right"></div>
+            <div class="flower-head">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="center"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
